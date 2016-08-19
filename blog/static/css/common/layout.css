@@ -430,5 +430,6 @@ html.theme-8 .header{
 	}
 	.header-container, .header .search-container, .main .main-container, .footer-container{
 		width: 98%;
+		margin: 0 auto;
 	}
 }
