@@ -335,6 +335,10 @@
     background-color: rgba(0,0,0,0.04);
     padding: 3px;
     border-radius: 2px;
+    font-family: Source Code Pro,Consolas,Menlo,Monaco,Courier New,monospace;
+}
+.markdown-body code *{
+    font-family: Source Code Pro,Consolas,Menlo,Monaco,Courier New,monospace;   
 }
 .markdown-body code br,.markdown-body tt br {
     display: none
