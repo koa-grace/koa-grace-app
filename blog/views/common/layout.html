@@ -11,6 +11,7 @@
 </head>
 
 <body>
+  {% block body %}
   <header class="header" id="header">
     <div class="header-container">
       <ul class="nav">
@@ -117,8 +118,11 @@
       <p>Copyright © {{siteInfo.year}} mlsfe. All rights reserved.</p>
     </div>
   </footer>
+  {% endblock %}
   <link rel="stylesheet" href="/blog/static/css/lib/awesome/css/font-awesome.css" type="text/css">
+  {% block foot %}
   <script src="/blog/static/js/common/layout.js" type="text/javascript"></script>
+  {% endblock %}
   <script>
   var _hmt = _hmt || [];
   (function() {
