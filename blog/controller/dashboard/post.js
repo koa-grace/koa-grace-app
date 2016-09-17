@@ -140,7 +140,7 @@ exports.edit = function* () {
   }
 
   yield this.render('dashboard/post_edit',{
-    isNew: !post_id,
+    isNew: !post_id ? 1 : 0,
     breads : ['文章管理',(!post_id ? '新文章':'编辑文章')],
     post:post,
     userInfo: this.userInfo,
