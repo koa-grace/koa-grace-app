@@ -1,0 +1,84 @@
+{% extends '../common/layout.html' %}
+{% block head %}
+<link rel="stylesheet" href="/platform/static/css/agg/doc.css" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class="left-bar">
+<div class="left-bar-container">
+  <h2 class="agg-title clearfix">
+  	<span class="agg-title-text pull-left">{{ aggInfo.title }}</span>
+    <span id="leftBarActive" class="agg-title-icon agg-title-more pull-right"><i class="fa fa-list"></i></span>
+  	<a href="/agg/edit?id={{ aggInfo.id }}" class="agg-title-icon agg-title-edit pull-right"><i class="fa fa-pencil"></i></a>
+  </h2>
+  <ul class="agg-list">
+    {% for list in aggInfo.lists %}
+    <li class="agg-item">
+    	<h3 class="agg-item-title">{{ list.title }}</h3>
+    	<ul class="agg-item-list">
+    		{% for doc in list.doclist %}
+    		<li class="agg-item-sub {% if siteInfo.url == doc.doc %}actived{% endif %}">
+    			<a href="{{ doc.doc }}">{{ doc.title }}</a>
+    		</li>
+    		{% endfor %}
+    	</ul>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+</div>
+<div class="right-bar">
+<div class="right-bar-container">
+	<div class="doc-form {% if docInfo.htmlContent %}hidden{% endif %}" id="docForm">
+    <form class="form-horizontal" id="form">
+      <div class="form-group">
+        <div class="col-sm-9">
+          <input type="text" class="form-control" title="title" name="title" placeholder="文档标题" value="{{docInfo.title}}">
+        </div>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" id="id" name="id" placeholder="英文/数字/下划线/中划线" {% if docInfo.id || doc %}readonly="true"{% endif %} value="{{doc}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="editor-wrapper col-sm-12">
+          <textarea id="editor" style="display: none;">{{docInfo.content}}</textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-12">
+          <button type="submit" id="submitBtn" class="btn btn-primary">提交文档</button>
+          {% if !isNew %}<button type="button" class="btn btn-default" id="formCancel">取消</button>{% endif %}
+        </div>
+      </div>
+   </form>
+  </div>
+  {% if docInfo.htmlContent %}
+  {% set author = siteInfo.users_item[docInfo.author] || {} %}
+    <div class="doc-title" id="docTitle">
+      <h1>{{ docInfo.title }}</h1>
+      <div>
+        <span class="doc-info"><font>作者: </font><b>{{ author.name|default(docInfo.author) }} {{docInfo.time|date('Y-m-d H:i',-480)}}</b>{% if docInfo.time !== docInfo.updateTime %}<font>更新: </font><b>{{ docInfo.updateUser }} {{docInfo.updateTime|date('Y-m-d H:i',-480)}} </b>{% endif %}</span>
+        <span class="doc-opera">
+          <a id="docOperaPlay" title="演示模式" href="/agg/slider?agg={{ aggInfo.id }}&doc={{ docInfo.id }}" target="_blank"><i class="fa fa-play"></i>演示模式</a>
+          <a id="docOperaEdit" title="编辑文档" href="#"><i class="fa fa-edit"></i>编辑文档</a>
+        </span>
+      </div>
+    </div>
+    <div class="doc-content markdown-body" id="docContent">{{ docInfo.htmlContent|safe }}</div>
+  {% endif %}
+</div>
+</div>
+{% endblock %}
+
+{% block foot %}
+<script type="text/javascript">
+  window.CONSTANT = window.CONSTANT || {};
+  window.CONSTANT.data = {
+    is_new : ({{isNew}} ? 1 : 0),
+    agg : '{{ aggInfo.id }}',
+    doc : '{{ doc }}',
+    updateTime : '{{ docInfo.updateTime.getTime() }}'
+  }
+</script>
+<script src="/platform/static/js/agg/doc.js" type="text/javascript"></script>
+{% endblock %}

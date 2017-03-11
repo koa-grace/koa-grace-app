@@ -1,0 +1,36 @@
+{% extends '../common/layout.html' %}
+{% block head %}
+{% if sliderConfig.type == 'slider' %}
+<link rel="stylesheet" href="/platform/static/css/common/reveal/reveal.css" type="text/css">
+<link rel="stylesheet" href="/platform/static/css/common/reveal/theme/{{sliderConfig.theme||'black'}}.css" type="text/css">
+{% endif %}
+{% endblock %}
+
+{% block body %}
+{% if sliderConfig.type == 'slider' %}
+<div class="reveal">
+  <div class="slides">
+    <section data-markdown
+             data-separator="^\n\n\n"
+             data-separator-vertical="^\n\n"
+             data-separator-notes="^Note:"
+             data-charset="iso-8859-15">
+      <script type="text/template">{{sliderContent|safe}}</script>
+    </section>
+  </div>
+</div>
+{% else %}
+<strong>该文档无法演示，请参考：<a href="/agg/doc?agg=fe&doc=agg-slider">演示模式使用说明</a></strong>
+{% endif %}
+{% endblock %}
+
+{% block foot %}
+{% if sliderConfig.type == 'slider' %}
+<script type="text/javascript">
+  window.CONSTANT = window.CONSTANT || {};
+  window.CONSTANT.docId = '{{ docInfo.id }}';
+  window.CONSTANT.userInfo = '{{ userInfo.name }}'
+</script>
+<script src="/platform/static/js/agg/slider.js" type="text/javascript"></script>
+{% endif %}
+{% endblock %}

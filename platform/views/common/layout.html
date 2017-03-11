@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>{% block title %}{{siteInfo.title}}{% endblock %}</title>
+  <meta name="viewport" content="width=device-width,user-scalable=no">
+  <meta name="robots" content="nofollow"/>
+  <link rel="icon" href="/common/static/image/favicon.ico">
+  <link rel="stylesheet" href="/platform/static/css/common/lib.css" type="text/css">
+  <!-- build:js /platform/static/js/lib.js -->
+  <script src="/platform/static/js/lib/require.js" type="text/javascript"></script>
+  <script src="/platform/static/js/require.config.js" type="text/javascript"></script>
+  <!-- endbuild -->
+  {% block head %}{% endblock %}
+</head>
+
+<body>
+{% block body %}
+<section class="head">
+  <div class="logo col-md-2">
+    <h1>文档平台</h1><a href="http://wiki.com">http://wiki.com</a></div>
+  <nav class="nav col-md-5">
+    <ul>
+      <li><a href="/home">首页</a></li>
+      <li class="actived"><a href="/home">文档平台</a></li>
+      <!-- <li><a href="{{constant.domain.ui}}">组件平台</a></li>
+      <li><a href="{{constant.domain.h5}}">H5生成</a></li> -->
+      <li><a href="{{constant.domain.blog}}">团队博客</a></li>
+      <li><a href="http://github.com/xiongwilee/koa-grace">koa-grace</a></li>
+    </ul>
+  </nav>
+
+  <div class="search col-md-3" id="search">
+    <form method="get" action="/agg/search">
+      <div class="input-group input-group-sm">
+        <input type="text" name="keyword" id="keyword" class="form-control " placeholder="keyword"/>
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-success">搜索</button>
+        </span>
+      </div>
+    </form>
+  </div>
+
+
+  <div class="user  col-md-2">
+    {% if !userInfo.id %}
+    <div class="user-login">
+      <a class="btn btn-default" href="/user/login?tarurl={{encodeURIComponent(siteInfo.href)}}"><i
+          class="fa fa-user"></i> 登录</a>
+    </div>
+    {% else %}
+    <div class="user-panel clearfix">
+      <a class="user-name" href="#">
+        <i class="user-name-img fa fa-user"></i>
+        <span class="user-name-text">{{userInfo.name}}</span>
+        <i class="user-name-arrow fa fa-angle-down"></i>
+      </a>
+      <ul class="user-opera">
+        {% if userInfo.isAdmin%}
+        <li class="user-opera-list"><a class="user-opera-item" href="http://auth.fadongxi.com/admin/user">管理用户</a></li>
+        {% endif %}
+        <li class="user-opera-list"><a class="user-opera-item" href="/user/home">修改密码</a></li>
+        <li class="user-opera-list"><a class="user-opera-item" href="/user/logout">退出</a></li>
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</section>
+<section class="main">
+  <div class="main-container clearfix">
+    {% block main %}
+    <div class="content">
+      {% block content %}{% endblock %}
+    </div>
+    {% endblock %}
+  </div>
+</section>
+<section class="foot"></section>
+{% endblock %}
+{% block foot %}{% endblock %}
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cfdffdc3020e69c6df9ef0dd598ca5f1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+
+</html>

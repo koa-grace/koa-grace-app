@@ -1,0 +1,15 @@
+.DS_Store
+node_modules
+npm-debug.log
+deploy/ansible.host
+deploy/config.php.example
+deploy/deploy_test.sh
+deploy/nginx/
+deploy/online.conf
+deploy/online.conf_0912
+deploy/online.conf_bak
+deploy/post-test
+deploy/pre-online.conf
+deploy/pre-test
+deploy/stone/
+deploy/*

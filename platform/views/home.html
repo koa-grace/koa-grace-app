@@ -1,0 +1,169 @@
+{% extends 'common/layout.html' %}
+{% block head %}
+<link rel="stylesheet" href="/platform/static/css/home/app.css" type="text/css">
+{% endblock %}
+{% block content %}
+<div class="left-bar col-md-2">
+    <div class="left-bar-container">
+        {% if userInfo %}
+        <div class="user list-group">
+            <div class="user-avatar">
+                <!--    <img src="{{constant.domain.blog}}/user/avatar?img={{userInfo.avatar}}" /> -->
+            </div>
+            <ul class="user-info list-group table-of-contents">
+                <li class="list-group-item">
+                    <span class="user-info-name">{{ userInfo.name }}</span>
+                </li>
+                <li class="list-group-item clearfix">
+                    <span class="user-info-other"><i class="fa fa-users"></i>{{ siteInfo.teams_item[userInfo.team].name }}</span>
+                </li>
+                <!-- <li class="list-group-item clearfix">
+                    <span class="user-info-other"><i class="fa fa-phone"></i>{{ userInfo.phone }}</span>
+                </li> -->
+            </ul>
+        </div>
+        {% endif %}
+        <div class="link list-group table-of-contents">
+            <span class="list-group-item link-title">常用链接</span>
+            <a class="list-group-item" href="http://wiki.com/">
+                <span>快捷方式</span><i class="fa fa-chevron-right pull-right"></i>
+            </a>
+            <a class="list-group-item" href="http://wiki.com/">
+                <span>快捷方式</span><i class="fa fa-chevron-right pull-right"></i>
+            </a>
+            <a class="list-group-item" href="http://wiki.com/">
+                <span>快捷方式</span><i class="fa fa-chevron-right pull-right"></i>
+            </a>
+            <a class="list-group-item" href="http://wiki.com/">
+                <span>快捷方式</span><i class="fa fa-chevron-right pull-right"></i>
+            </a>
+            <a class="list-group-item" href="http://wiki.com/">
+                <span>快捷方式</span><i class="fa fa-chevron-right pull-right"></i>
+            </a>
+            <a class="list-group-item" href="http://wiki.com/">
+                <span>快捷方式</span><i class="fa fa-chevron-right pull-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="center-bar col-md-7">
+    <div class="center-bar-container">
+        {% if userInfo %}
+        <div class="center-top clearfix">
+        <div class="dropdown pull-right">
+          <a id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ siteInfo.teams_item[curTeam].name }}
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dLabel">
+            {% for team in siteInfo.teams %}
+            <li class="{% if curTeam == team.id %}actived{% endif %}">
+                <a href="?team={{ team.id }}">{{ team.name }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        </div>
+        {% endif %}
+        <div id="menu">
+            {% for type in siteInfo.types_item %}
+            {% if _aggList[type.id]%}
+            {% set flag = true %}
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ type.name}}
+                </div>
+                <div class="panel-body clearfix">
+                    {% for agg in aggList %}
+                    {% if agg.type == type.id%}
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="/agg/doc?agg={{ agg.id }}">
+                                <!-- <img class="media-object" src="..." alt="..."> -->
+                                <i class="media-object fa fa-file-text-o"></i>
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="/agg/doc?agg={{ agg.id }}">{{ agg.title }}</a></h4>{{
+                            agg.intro }}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% if _aggList['__default__'] %}
+            {% set flag = true %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    默认分组
+                </div>
+                <div class="panel-body clearfix">
+                    {% for agg in _aggList['__default__'] %}
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="/agg/doc?agg={{ agg.id }}">
+                                <!-- <img class="media-object" src="..." alt="..."> -->
+                                <i class="media-object fa fa-file-text-o"></i>
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="/agg/doc?agg={{ agg.id }}">{{ agg.title }}</a></h4>{{
+                            agg.intro }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% if flag!=true %}
+        <p id="block">当前团队暂时没有文档！</p>
+        {% endif %}
+    </div>
+</div>
+<div class="right-bar col-md-3">
+    <div class="right-bar-container">
+        <div class="new">
+            <a class="btn btn-success" href="/agg/edit">新建聚合页</a>
+        </div>
+        <div class="recent recent-doc panel panel-default">
+            <div class="panel-heading">最新文档</div>
+            <div class="panel-body">
+                <ul class="recent-list">
+                    {% for doc in recentDocList %}
+                    {% set author = siteInfo.users_item[doc.author] || {} %}
+                    <li>
+                        <a href="/agg/doc?agg={{ doc.agg }}&doc={{ doc.id }}"><span><i class="fa fa-chevron-right"></i>{{ doc.title }}</span>
+                            <small>{{ doc.updateTime|date('Y-m-d H:i',-480) }} by {{ doc.updateUser || author.name|default(doc.author)}}
+                            </small>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="recent recent-agg panel panel-default">
+            <div class="panel-heading">最新聚合页</div>
+            <div class="panel-body">
+                <ul class="recent-list">
+                    {% for agg in recentAggList %}
+                    {% set author = siteInfo.users_item[agg.author] || {} %}
+                    <li>
+                        <a href="/agg/doc?agg={{ agg.id }}"><span><i
+                                class="fa fa-chevron-right"></i>{{ agg.title }}</span>
+                            <small>{{ agg.updateTime|date('Y-m-d H:i',-480) }} by {{ agg.updateUser || author.name|default(agg.author) }}
+                            </small>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block foot %}
+<script src="/platform/static/js/home/app.js" type="text/javascript"></script>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends '../common/layout.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="/platform/static/css/agg/search.css" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class="left-bar col-md-1">
+</div>
+
+<div class="col-md-7">
+  <div class="panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">搜寻:<span style="color: red">"{{ keyword }}"</span> 的结果如下,找到约<span style="color: red">{{ total }}</span>条结果(用时{{spendTime}}秒)</h3>
+    </div>
+    <div class="panel-body">
+      <div class="panel-body clearfix">
+        {% if docList.length>0 %}
+        {% for doc in docList %}
+        <div class="media">
+          <div class="media-left">
+            <a href="/agg/doc?agg={{ doc.agg }}&doc={{ doc.id }}">
+              <!-- <img class="media-object" src="..." alt="..."> -->
+              <i class="media-object fa fa-file-text-o"></i>
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">
+              <a href="/agg/doc?agg={{ doc.agg }}&doc={{ doc.id }}">{{ doc.title }}</a>
+            </h4>
+            <span>
+              {{ doc.showContent.substring(0,200) }}
+            </span>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% if docList.length==0 %}
+          <span>您搜索的没有匹配文章,请重新搜索!</span>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block foot %}
+<script src="/platform/static/js/agg/search.js" type="text/javascript"></script>
+{% endblock %}

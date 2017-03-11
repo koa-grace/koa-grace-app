@@ -1,0 +1,30 @@
+{% extends '../common/layout.html' %} {% block head %}
+<link rel="stylesheet" href="/platform/static/css/user/home.css" type="text/css"> {% endblock %} {% block content %}
+<ol class="breadcrumb">
+  <li><a href="/"><i class="fa fa-home"></i></a></li>
+  <li class="active"><a>上传文件</a></li>
+</ol>
+<div class="content col-md-12">
+  <form class="form-horizontal col-md-5" id="form" action="/file/aj_upload" enctype="multipart/form-data" method="post">
+    <div class="form-group">
+      <label for="title" class="col-sm-3 control-label">文件标题</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="title" name="title" placeholder="文件标题">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="upload" class="col-sm-3 control-label">上传文件</label>
+      <div class="col-sm-9">
+        <input type="file" class="form-control" id="upload" name="upload" placeholder="上传文件">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <button type="submit" class="btn btn-primary">上传</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %} {% block foot %}
+<!-- <script src="/platform/static/js/user/home.js" type="text/javascript"></script> -->
+{% endblock %}

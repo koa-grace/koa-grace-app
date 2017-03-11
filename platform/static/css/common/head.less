@@ -1,0 +1,119 @@
+@import "../common/base.less";
+@gray-middle: @brand-primary;
+.head {
+  border-bottom: 1px solid #dfdfdf;
+  .clearfix();
+  .logo {
+    padding-top: 7px;
+    h1 {
+      font-size: @font-size-large;
+      margin: 0px;
+    }
+    a {
+      font-size: @font-size-small;
+    }
+  }
+  .search {
+    margin-top: 10px;
+  }
+  .nav {
+    ul {
+      margin: 0px;
+      .clearfix();
+      li {
+        float: left;
+        list-style: none;
+        a {
+          border-top: 2px solid rgb(255, 255, 255);
+          display: block;
+          line-height: 48px;
+          padding: 0 15px;
+          color: @gray-middle;
+        }
+        &.actived a {
+          border-color: @brand-success;
+          color: @brand-success;
+        }
+      }
+    }
+  }
+  .user {
+    .user-login {
+      a {
+        margin-left: 100px;
+        margin-top: 10px;
+        padding: 3px 12px;
+        border-radius: 40px;
+      }
+    }
+    .user-panel {
+      position: relative;
+      .user-name {
+        display: block;
+        float: right;
+        line-height: 50px;
+        border-top: 2px solid transparent;
+        text-decoration: none;
+        overflow: hidden;
+        .user-name-img {
+          width: 24px;
+          line-height: 24px;
+          border-radius: 12px;
+          vertical-align: middle;
+          background: #efefef;
+          text-align: center;
+        }
+        .user-name-arrow {
+          padding-right: 10px;
+        }
+        span {
+          vertical-align: middle;
+        }
+      }
+      .user-opera {
+        display: none;
+        margin: 0px;
+        padding: 0px;
+        padding-bottom: 10px;
+        position: absolute;
+        background: #ffffff;
+        width: 120px;
+        border: 1px solid #dfdfdf;
+        border-top: none;
+        top: 53px;
+        right: 0px;
+        z-index: 1000;
+        li {
+          list-style: none;
+          a {
+            display: block;
+            padding-left: 26px;
+            line-height: 24px;
+            font-size: 13px;
+          }
+        }
+      }
+      &:hover .user-opera {
+        display: block;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .head {
+    background: #ecf0f1;
+    .logo {
+      float: left;
+    }
+    .search {
+      margin-top: 7px;
+      float: right;
+      width: 50%;
+    }
+    .nav,
+    .user {
+      display: none;
+    }
+  }
+}

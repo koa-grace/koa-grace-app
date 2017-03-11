@@ -1,0 +1,151 @@
+@import "../common/base.less";
+// @gray-middle: @gray;
+.main {
+  padding: 0px;
+  .content {
+    .clearfix();
+    .left-bar {
+      .left-bar-container {
+        border-radius: 5px;
+        margin-top: 15px;
+        overflow: hidden;
+      }
+      .user{
+      	.user-avatar{
+      		img{
+      			width: 100%;
+      		}
+      	}
+      	.user-info{
+          margin-bottom:0px;
+      		.list-group-item{
+            span{
+              display: block;
+              &.user-info-name{
+                font-size: 24px;
+                color: @brand-success;
+              }
+              &.user-info-other{
+                font-size: 12px;
+                color: @gray;
+                i{
+                  padding-right: 5px;
+                }
+              }
+            }
+      		}
+      	}
+      }
+      .link{
+        span.link-title{
+          background: @gray-lighter;
+          &:hover{
+            background: @gray-lighter;
+          }
+        }
+        a.list-group-item{
+          &:hover{
+            background: none;
+            color: @brand-success;
+            i{
+              color: @brand-success;
+            }
+          }
+          i{
+            margin-top: 5px;
+            color: @gray-light;
+          }
+        }
+      }
+      .team{
+        a{
+          &:hover{
+            background-color: inherit;
+          }
+          &.actived{
+            color: @brand-success;
+            i{
+              color: @brand-success;
+            }
+          }
+          i{
+            padding-right: 10px;
+            font-size: 12px;
+            color: @gray-light;
+          }
+          span{
+
+          }
+        }
+      }
+    }
+    .center-bar {
+      .center-bar-container {
+        margin-top: 15px;
+        overflow: hidden;
+      }
+      .center-top{
+        margin-bottom: 10px;
+        .dropdown > a{
+          cursor: pointer;
+          text-decoration: none;
+        }
+      }
+      .agg{
+        .agg-item{
+          .agg-item-container{
+            padding: 10px;
+            background-color: @gray-light;
+          }
+        }
+      }
+    }
+    .right-bar {
+      .right-bar-container {
+        margin-top: 15px;
+        overflow: hidden;
+      }
+      .new{
+        a{
+          display: block;
+          margin-bottom: 15px;
+        }
+        overflow: hidden;
+      }
+      .recent{
+        ul {
+          padding: 0px;
+          li{
+            list-style: none;
+            a{
+              display: block;
+              span{
+                display: block;
+                font-size: 16px;
+                color: @brand-primary;
+                i{
+                  font-size: 12px;
+                  padding-right: 10px;
+                  color: @gray-light;
+                }
+              }
+              small{
+                display: block;
+                font-size: 12px;
+                margin-left: 20px;
+                padding-bottom: 3px;
+                color: @gray-light;
+              }
+              &:hover{
+                text-decoration: none;
+                span , span i, small{
+                  color: @brand-success;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
