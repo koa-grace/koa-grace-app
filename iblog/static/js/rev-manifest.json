@@ -14,8 +14,8 @@
   "iblog/static/js/lib/reveal/zoom.js": "iblog/static/js/lib/reveal/zoom-7efc692f8d.js",
   "iblog/static/js/lib/simplemde.min.js": "iblog/static/js/lib/simplemde-d1bf3b57e5.min.js",
   "iblog/static/js/lib/zepto.min.js": "iblog/static/js/lib/zepto-7f1d77b9b7.min.js",
-  "iblog/static/js/post/detail.js": "iblog/static/js/post/detail-9f623e0298.js",
+  "iblog/static/js/post/detail.js": "iblog/static/js/post/detail-62daf94dd2.js",
   "iblog/static/js/post/label.js": "iblog/static/js/post/label-5440cabc26.js",
-  "iblog/static/js/require.config.js": "iblog/static/js/require-002d011d9b.config.js",
-  "platform/static/js/lib.js": "platform/static/js/lib-ddfe586f20.js"
+  "iblog/static/js/require.config.js": "iblog/static/js/require-a4bad2e52d.config.js",
+  "platform/static/js/lib.js": "platform/static/js/lib-167931b3ae.js"
 }
