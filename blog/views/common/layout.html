@@ -95,10 +95,10 @@
             {% for user in siteInfo.users %}
             {% if user.isAuthor%}
               <li>
-                <a href="{{user.blog}}" class="side-ul-item clearfix" target="_blank">
+                <a href="{{user.blog||user.github}}" class="side-ul-item clearfix" target="_blank">
                   <img src="/user/avatar?img={{user.avatar}}" class="item-img">
                   <span class="item-nickname">{{ user.nickname }}</span>
-                  <span class="item-blog">{{ user.blog || user.blog }}</span>
+                  <span class="item-blog">{{ user.blog || user.github }}</span>
                 </a>
               </li>
             {% endif %}
