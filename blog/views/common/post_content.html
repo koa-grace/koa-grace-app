@@ -11,10 +11,10 @@
     <div class="post-cate">
       <a href="/post/cate/{{post.category}}">{{ cate.name}}</a><i class="icon-bookmark-empty"></i>
     </div>
-    {% if post.from %}
-    <div class="post-from"><span>[来源]</span><a href="{{ post.from }}">{{ post.from }}</a></div>
-    {% endif %}
     <h2 class="post-title">{{ post.title }}</h2>
+    {% if post.from %}
+    <div class="post-from"><span>[原文链接]</span><a href="{{ post.from }}">{{ post.from }}</a></div>
+    {% endif %}
 	  <div class="post-content markdown-body">
           {{ post.htmlContent || post.content | safe }}
     </div>
