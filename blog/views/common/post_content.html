@@ -14,7 +14,7 @@
     <h2 class="post-title">{{ post.title }}</h2>
 	  <div class="post-content markdown-body">
       {% if post.from %}
-      <div class="post-content-from"><span>[原文链接]</span><a href="{{ post.from }}">{{ post.from }}</a></div>
+      <blockquote class="post-content-from"><span>[原文链接]</span><a href="{{ post.from }}">{{ post.from }}</a></blockquote>
       {% endif %}
 
       {{ post.htmlContent || post.content | safe }}
