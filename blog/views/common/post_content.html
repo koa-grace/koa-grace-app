@@ -12,11 +12,12 @@
       <a href="/post/cate/{{post.category}}">{{ cate.name}}</a><i class="icon-bookmark-empty"></i>
     </div>
     <h2 class="post-title">{{ post.title }}</h2>
-    {% if post.from %}
-    <div class="post-from"><span>[原文链接]</span><a href="{{ post.from }}">{{ post.from }}</a></div>
-    {% endif %}
 	  <div class="post-content markdown-body">
-          {{ post.htmlContent || post.content | safe }}
+      {% if post.from %}
+      <div class="post-content-from"><span>[原文链接]</span><a href="{{ post.from }}">{{ post.from }}</a></div>
+      {% endif %}
+
+      {{ post.htmlContent || post.content | safe }}
     </div>
     <div id="disqus_thread" class="post-comment ds-thread"></div>
   </article>
