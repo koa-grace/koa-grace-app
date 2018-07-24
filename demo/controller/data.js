@@ -2,6 +2,6 @@
 
 exports.info = {
   repo: function*(){
-    yield this.proxy('github:repos/xiongwilee/koa-grace')
+    yield this.proxy('github:repos/xiongwilee/gracejs')
   }
 }
