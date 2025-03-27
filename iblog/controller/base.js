@@ -29,8 +29,8 @@ const config = {
     year: new Date().getFullYear(),
     banner: 'https://img003.qufenqi.com/products/c0/72/c072f0506c961f6d1652531d60712c40.jpg',
     links: [{
-      name: '前端俱乐部',
-      url: 'https://feclub.cn'
+      name: '首页_Web开发者助手',
+      url: 'https://www.baidufe.com/'
     }]
   }
 }
@@ -166,7 +166,7 @@ function getPostQuery(body) {
 
   let result = {};
   let commentReg = /^\[(\w+)\]\:([\s|\S]+)/;
-  body.split('\r\n').every((item) => {
+  body.split('\n').every((item) => {
     let itemMatch = item.match(commentReg);
     if (itemMatch && itemMatch.length == 3) {
       let queryKey = itemMatch[1],
